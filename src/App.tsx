@@ -4,8 +4,7 @@ import { LanguageProvider } from './context/LanguageContext';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { Services } from './components/Services';
-import { ERPSwitcher } from './components/ERPSwitcher';
-import { ROICalculator } from './components/ROICalculator';
+import { ERPSpotlight } from './components/ERPSpotlight';
 import { Team } from './components/Team';
 import { FAQ } from './components/FAQ';
 import { ContactFooter } from './components/ContactFooter';
@@ -47,18 +46,14 @@ export const AppContent: React.FC = () => {
       <main>
         {/* Hero Section */}
         <Hero
-          onOpenTestDrive={() => setTestDriveOpen(true)}
           onOpenContact={scrollToContact}
         />
 
         {/* Services Section */}
         <Services onOpenContact={scrollToContact} />
 
-        {/* ERP Showcase & Interactive Playground */}
-        <ERPSwitcher onOpenTestDrive={() => setTestDriveOpen(true)} />
-
-        {/* SME Growth & ROI Calculator */}
-        <ROICalculator onOpenContact={scrollToContact} />
+        {/* A concise introduction to Woubou ERP; details stay in the modal. */}
+        <ERPSpotlight onOpenERP={() => setTestDriveOpen(true)} />
 
         {/* Team Section */}
         <Team />

@@ -16,6 +16,12 @@ export interface Translations {
     titleStart: string;
     titleHighlight: string;
     subtitle: string;
+    servicesBtn: string;
+    customApproach: string;
+    humanSupport: string;
+    scalableTech: string;
+    expertiseLabel: string;
+    expertiseCaption: string;
     testErpBtn: string;
     directErpBtn: string;
     contactBtn: string;
@@ -56,6 +62,11 @@ export interface Translations {
     sandboxBtn: string;
     playgroundTitle: string;
     playgroundDesc: string;
+    availableNow: string;
+    online: string;
+    teaserTitle: string;
+    teaserDescription: string;
+    discoverBtn: string;
     tabFinancials: string;
     tabInventory: string;
     tabCrm: string;
@@ -198,10 +209,16 @@ export const translations: Record<Language, Translations> = {
       liveErpLink: 'Accéder à Woubou ERP'
     },
     hero: {
-      badge: 'SOLUTIONS SAAS ENTREPRISE & DÉVELOPPEMENT SUR MESURE',
-      titleStart: 'Propulsez les PME avec des',
-      titleHighlight: 'Solutions Numériques Intelligentes',
-      subtitle: 'Optimisez vos opérations, augmentez votre productivité et développez votre activité grâce à nos plateformes SaaS de pointe et nos services sur mesure pour entreprises modernes.',
+      badge: 'PARTENAIRE DE VOTRE TRANSFORMATION NUMÉRIQUE',
+      titleStart: 'Nous transformons vos idées en',
+      titleHighlight: 'solutions numériques utiles',
+      subtitle: 'Woubou conçoit des produits numériques, des logiciels sur mesure et des automatisations intelligentes qui répondent aux réalités de votre entreprise.',
+      servicesBtn: 'Découvrir nos services',
+      customApproach: 'Solutions adaptées à vos besoins',
+      humanSupport: 'Accompagnement humain',
+      scalableTech: 'Technologies conçues pour évoluer',
+      expertiseLabel: 'Ce que nous construisons',
+      expertiseCaption: 'Une même équipe pour comprendre vos enjeux, concevoir la bonne solution et l’accompagner dans la durée.',
       testErpBtn: 'Tester Notre ERP',
       directErpBtn: 'Accéder à Woubou ERP',
       contactBtn: 'Nous Contacter',
@@ -242,6 +259,11 @@ export const translations: Record<Language, Translations> = {
       sandboxBtn: 'Lancer le Bac à Sable ERP',
       playgroundTitle: 'Bac à Sable Interactif ERP',
       playgroundDesc: 'Changez de module ci-dessous pour tester la logique de Woubou ERP directement sur cette page !',
+      availableNow: 'UN PRODUIT WOUBOU DÉJÀ DISPONIBLE',
+      online: 'Disponible',
+      teaserTitle: 'Gérez votre quotidien avec Woubou ERP',
+      teaserDescription: 'Parmi nos solutions, Woubou ERP aide les entreprises à centraliser leurs opérations, suivre leurs données et gagner du temps depuis un seul espace.',
+      discoverBtn: 'Découvrir Woubou ERP',
       tabFinancials: 'Finances',
       tabInventory: 'Gestion des Stocks',
       tabCrm: 'Pipeline CRM',
@@ -378,10 +400,16 @@ export const translations: Record<Language, Translations> = {
       liveErpLink: 'Access Woubou ERP'
     },
     hero: {
-      badge: 'ENTERPRISE SAAS & BESPOKE DIGITAL SERVICES',
-      titleStart: 'Empowering SMEs with',
-      titleHighlight: 'Intelligent Digital Solutions',
-      subtitle: 'Streamline your operations, boost productivity, and scale your business with our cutting-edge SaaS platforms and bespoke digital services tailored for modern enterprises.',
+      badge: 'YOUR DIGITAL TRANSFORMATION PARTNER',
+      titleStart: 'We turn your ideas into',
+      titleHighlight: 'useful digital solutions',
+      subtitle: 'Woubou designs digital products, custom software, and intelligent automations built around the realities of your business.',
+      servicesBtn: 'Explore our services',
+      customApproach: 'Solutions tailored to your needs',
+      humanSupport: 'Human, hands-on support',
+      scalableTech: 'Technology designed to scale',
+      expertiseLabel: 'What we build',
+      expertiseCaption: 'One team to understand your challenges, design the right solution, and support it over time.',
       testErpBtn: 'Test Our ERP',
       directErpBtn: 'Access Woubou ERP',
       contactBtn: 'Contact Us',
@@ -422,6 +450,11 @@ export const translations: Record<Language, Translations> = {
       sandboxBtn: 'Launch Full ERP Sandbox',
       playgroundTitle: 'Live Interactive ERP Playground',
       playgroundDesc: 'Switch modules below to test real Woubou ERP logic right inside this page!',
+      availableNow: 'A WOUBOU PRODUCT AVAILABLE TODAY',
+      online: 'Available',
+      teaserTitle: 'Run your day-to-day with Woubou ERP',
+      teaserDescription: 'Among our solutions, Woubou ERP helps businesses centralize operations, track their data, and save time from one workspace.',
+      discoverBtn: 'Discover Woubou ERP',
       tabFinancials: 'Financials',
       tabInventory: 'Inventory',
       tabCrm: 'CRM Pipeline',

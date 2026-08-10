@@ -54,8 +54,8 @@ export const ContactFooter: React.FC = () => {
             {t.contact.subtitle}
           </p>
 
-          {/* Quick Contact & Phone Call Button */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-2">
+          {/* Quick Contact */}
+          <div className="flex items-center justify-center pt-2">
             <a
               href="tel:+1234567890"
               className="inline-flex items-center gap-3 px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-geist text-lg font-bold transition-all"
@@ -64,17 +64,6 @@ export const ContactFooter: React.FC = () => {
                 phone
               </span>
               <span>+243 89 89 45 203</span>
-            </a>
-            <a
-              href="https://erp.woubou.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 border border-emerald-400/30 text-white font-geist text-base font-bold transition-all"
-            >
-              <span className="material-symbols-outlined text-xl">
-                open_in_new
-              </span>
-              <span>erp.woubou.com</span>
             </a>
           </div>
 

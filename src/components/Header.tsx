@@ -39,8 +39,6 @@ export const Header: React.FC<HeaderProps> = ({
 
   const navLinks = [
     { name: t.nav.services, href: '#services' },
-    { name: t.nav.erp, href: '#erp' },
-    { name: t.nav.calculator, href: '#calculator' },
     { name: t.nav.team, href: '#team' },
     { name: t.nav.faq, href: '#faq' }
   ];
@@ -71,6 +69,12 @@ export const Header: React.FC<HeaderProps> = ({
               {link.name}
             </a>
           ))}
+          <button
+            onClick={onOpenTestDrive}
+            className="text-[#3f484c] dark:text-slate-300 hover:text-[#004859] dark:hover:text-[#8ad0ea] transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-[#b52703] dark:after:bg-[#fc5935] after:transition-all hover:after:w-full cursor-pointer"
+          >
+            {t.nav.erp}
+          </button>
         </nav>
 
         {/* Action Controls & Toggles */}
@@ -194,28 +198,18 @@ export const Header: React.FC<HeaderProps> = ({
                 {link.name}
               </a>
             ))}
-          </div>
-
-          <div className="pt-2 flex flex-col gap-2.5">
-            <a
-              href="https://erp.woubou.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-md bg-emerald-600 text-white font-mono-caps text-xs tracking-wider uppercase shadow-md"
-            >
-              <span className="material-symbols-outlined text-[18px]">open_in_new</span>
-              {t.nav.liveErpLink} (erp.woubou.com)
-            </a>
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
                 onOpenTestDrive();
               }}
-              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-md bg-[#026177] text-white font-mono-caps text-xs tracking-wider uppercase"
+              className="text-left text-[#131b2e] dark:text-slate-200 hover:text-[#004859] dark:hover:text-[#8ad0ea] font-medium py-2 border-b border-[#026177]/5 dark:border-white/5"
             >
-              <span className="material-symbols-outlined text-[18px]">terminal</span>
-              {t.nav.sandbox}
+              {t.nav.erp}
             </button>
+          </div>
+
+          <div className="pt-2 flex flex-col gap-2.5">
             <button
               onClick={() => {
                 setMobileMenuOpen(false);

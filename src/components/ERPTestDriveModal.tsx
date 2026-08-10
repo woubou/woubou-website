@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { ERPSwitcher } from './ERPSwitcher';
+import { ROICalculator } from './ROICalculator';
 
 interface ERPTestDriveModalProps {
   isOpen: boolean;
@@ -21,9 +23,8 @@ export const ERPTestDriveModal: React.FC<ERPTestDriveModalProps> = ({
   onOpenContact
 }) => {
   const { t } = useLanguage();
-  if (!isOpen) return null;
 
-  const [activeView, setActiveView] = useState<'overview' | 'invoices' | 'logs'>('overview');
+  const [activeView, setActiveView] = useState<'modules' | 'roi' | 'overview' | 'invoices' | 'logs'>('modules');
 
   // Interactive Sandbox Data State
   const [invoices, setInvoices] = useState<SampleInvoice[]>([
@@ -65,39 +66,70 @@ export const ERPTestDriveModal: React.FC<ERPTestDriveModalProps> = ({
     setLogs([`Invoice ${id} marked as PAID. Accounting Ledger updated.`, ...logs]);
   };
 
+  if (!isOpen) return null;
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-6 bg-slate-950/80 backdrop-blur-md animate-fade-in">
-      <div className="relative w-full max-w-5xl h-[90vh] bg-[#0f172a] text-white rounded-3xl shadow-2xl border border-white/15 overflow-hidden flex flex-col sm:flex-row">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-6 bg-slate-950/80 backdrop-blur-md animate-fade-in"
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
+    >
+      <div className="relative w-full max-w-7xl h-[94vh] bg-[#0f172a] text-white rounded-3xl shadow-2xl border border-white/15 overflow-hidden flex flex-col sm:flex-row">
         
         {/* Sidebar */}
-        <div className="w-full sm:w-64 bg-slate-900 p-5 border-b sm:border-b-0 sm:border-r border-white/10 flex flex-col justify-between">
-          <div className="space-y-6">
+        <div className="w-full sm:w-64 bg-slate-900 p-3 sm:p-5 border-b sm:border-b-0 sm:border-r border-white/10 flex flex-col sm:justify-between gap-3">
+          <div className="space-y-3 sm:space-y-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full bg-[#026177]"></div>
                 <span className="font-geist font-bold text-lg text-white">Woubou ERP</span>
               </div>
               <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-mono-caps text-[10px]">
-                SANDBOX
+                v0.2
               </span>
             </div>
 
-            <nav className="space-y-1 font-mono-caps text-xs">
+            <nav className="flex sm:block gap-1 sm:space-y-1 overflow-x-auto font-mono-caps text-xs">
+              <button
+                onClick={() => setActiveView('modules')}
+                className={`min-w-max sm:w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-all ${
+                  activeView === 'modules'
+                    ? 'bg-[#026177] text-white font-semibold'
+                    : 'text-slate-400 hover:bg-white/5 hover:text-white'
+                }`}
+              >
+                <span className="material-symbols-outlined text-lg">view_quilt</span>
+                {t.nav.erp}
+              </button>
+
+              <button
+                onClick={() => setActiveView('roi')}
+                className={`min-w-max sm:w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-all ${
+                  activeView === 'roi'
+                    ? 'bg-[#026177] text-white font-semibold'
+                    : 'text-slate-400 hover:bg-white/5 hover:text-white'
+                }`}
+              >
+                <span className="material-symbols-outlined text-lg">calculate</span>
+                ROI
+              </button>
+
               <button
                 onClick={() => setActiveView('overview')}
-                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-all ${
+                className={`min-w-max sm:w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-all ${
                   activeView === 'overview'
                     ? 'bg-[#026177] text-white font-semibold'
                     : 'text-slate-400 hover:bg-white/5 hover:text-white'
                 }`}
               >
                 <span className="material-symbols-outlined text-lg">dashboard</span>
-                {t.sandboxModal.dashboard}
+                {t.erp.playgroundTitle}
               </button>
 
-              <button
+              {(activeView === 'invoices' || activeView === 'logs') && <button
                 onClick={() => setActiveView('invoices')}
-                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-all ${
+                className={`min-w-max sm:w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-all ${
                   activeView === 'invoices'
                     ? 'bg-[#026177] text-white font-semibold'
                     : 'text-slate-400 hover:bg-white/5 hover:text-white'
@@ -105,11 +137,11 @@ export const ERPTestDriveModal: React.FC<ERPTestDriveModalProps> = ({
               >
                 <span className="material-symbols-outlined text-lg">receipt_long</span>
                 {t.sandboxModal.invoices}
-              </button>
+              </button>}
 
-              <button
+              {(activeView === 'invoices' || activeView === 'logs') && <button
                 onClick={() => setActiveView('logs')}
-                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-all ${
+                className={`min-w-max sm:w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-all ${
                   activeView === 'logs'
                     ? 'bg-[#026177] text-white font-semibold'
                     : 'text-slate-400 hover:bg-white/5 hover:text-white'
@@ -117,11 +149,11 @@ export const ERPTestDriveModal: React.FC<ERPTestDriveModalProps> = ({
               >
                 <span className="material-symbols-outlined text-lg">terminal</span>
                 {t.sandboxModal.auditLogs} ({logs.length})
-              </button>
+              </button>}
             </nav>
           </div>
 
-          <div className="pt-4 border-t border-white/10 space-y-2.5">
+          <div className="hidden sm:block pt-4 border-t border-white/10 space-y-2.5">
             <a
               href="https://erp.woubou.com"
               target="_blank"
@@ -150,27 +182,48 @@ export const ERPTestDriveModal: React.FC<ERPTestDriveModalProps> = ({
         </div>
 
         {/* Main Content Pane */}
-        <div className="flex-1 p-6 overflow-y-auto space-y-6 bg-[#0f172a]">
+        <div className="flex-1 p-3 sm:p-6 overflow-y-auto space-y-6 bg-[#0f172a]">
           
           {/* Header */}
           <div className="flex items-center justify-between border-b border-white/10 pb-4">
             <div>
               <h2 className="font-geist text-2xl font-bold text-white">
+                {activeView === 'modules' && t.erp.title}
+                {activeView === 'roi' && t.calculator.title}
                 {activeView === 'overview' && t.sandboxModal.title}
                 {activeView === 'invoices' && t.sandboxModal.invoices}
                 {activeView === 'logs' && t.sandboxModal.auditLogs}
               </h2>
               <p className="font-inter text-xs text-slate-400">
-                {t.sandboxModal.subtitle}
+                {activeView === 'modules' ? t.erp.description : activeView === 'roi' ? t.calculator.subtitle : t.sandboxModal.subtitle}
               </p>
             </div>
             <button
               onClick={onClose}
+              aria-label="Close Woubou ERP"
               className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 cursor-pointer"
             >
               <span className="material-symbols-outlined text-2xl">close</span>
             </button>
           </div>
+
+          {activeView === 'modules' && (
+            <div className="rounded-2xl bg-[#faf8ff] dark:bg-slate-950 p-1 sm:p-3 text-[#131b2e] dark:text-white">
+              <ERPSwitcher embedded onOpenTestDrive={() => setActiveView('overview')} />
+            </div>
+          )}
+
+          {activeView === 'roi' && (
+            <div className="rounded-2xl bg-[#faf8ff] dark:bg-slate-950 p-1 sm:p-3 text-[#131b2e] dark:text-white">
+              <ROICalculator
+                embedded
+                onOpenContact={() => {
+                  onClose();
+                  onOpenContact();
+                }}
+              />
+            </div>
+          )}
 
           {/* VIEW 1: OVERVIEW */}
           {activeView === 'overview' && (

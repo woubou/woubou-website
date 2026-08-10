@@ -3,9 +3,10 @@ import { useLanguage } from '../context/LanguageContext';
 
 interface ROICalculatorProps {
   onOpenContact: () => void;
+  embedded?: boolean;
 }
 
-export const ROICalculator: React.FC<ROICalculatorProps> = ({ onOpenContact }) => {
+export const ROICalculator: React.FC<ROICalculatorProps> = ({ onOpenContact, embedded = false }) => {
   const { t } = useLanguage();
   const [employees, setEmployees] = useState<number>(25);
   const [hourlyRate, setHourlyRate] = useState<number>(45);
@@ -25,7 +26,7 @@ export const ROICalculator: React.FC<ROICalculatorProps> = ({ onOpenContact }) =
   const roiMultiplier = (totalAnnualSavings / estimatedWoubouCost).toFixed(1);
 
   return (
-    <section id="calculator" className="py-20 md:py-28 px-4 sm:px-6 lg:px-8 max-w-[1280px] mx-auto">
+    <section className={embedded ? '' : 'py-20 md:py-28 px-4 sm:px-6 lg:px-8 max-w-[1280px] mx-auto'}>
       <div className="bg-[#ffffff] dark:bg-slate-900 rounded-3xl p-6 sm:p-10 lg:p-12 border border-[#026177]/20 dark:border-white/10 shadow-xl">
         
         {/* Header */}

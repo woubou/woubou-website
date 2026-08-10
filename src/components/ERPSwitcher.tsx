@@ -12,9 +12,10 @@ import { useLanguage } from '../context/LanguageContext';
 
 interface ERPSwitcherProps {
   onOpenTestDrive: () => void;
+  embedded?: boolean;
 }
 
-export const ERPSwitcher: React.FC<ERPSwitcherProps> = ({ onOpenTestDrive }) => {
+export const ERPSwitcher: React.FC<ERPSwitcherProps> = ({ onOpenTestDrive, embedded = false }) => {
   const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState<'financials' | 'inventory' | 'crm' | 'workflow'>('financials');
 
@@ -79,9 +80,9 @@ export const ERPSwitcher: React.FC<ERPSwitcherProps> = ({ onOpenTestDrive }) => 
   );
 
   return (
-    <section id="erp" className="py-20 md:py-28 px-4 sm:px-6 lg:px-8 max-w-[1280px] mx-auto">
+    <section className={embedded ? 'space-y-10' : 'py-20 md:py-28 px-4 sm:px-6 lg:px-8 max-w-[1280px] mx-auto'}>
       {/* Top Banner / Feature Intro */}
-      <div className="bg-[#ffffff] dark:bg-slate-900 rounded-3xl p-6 sm:p-10 lg:p-12 border border-[#026177]/15 dark:border-white/10 shadow-xl mb-16">
+      <div className={`bg-[#ffffff] dark:bg-slate-900 rounded-3xl p-6 sm:p-10 border border-[#026177]/15 dark:border-white/10 shadow-xl ${embedded ? '' : 'mb-16'}`}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           
           {/* Left: Image Frame */}
