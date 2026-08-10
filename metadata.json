@@ -1,0 +1,6 @@
+{
+  "name": "Woubou",
+  "description": "Empowering SMEs with Intelligent Digital Solutions, Proprietary SaaS Platforms, and Custom ERP Systems",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
