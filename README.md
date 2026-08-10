@@ -1,20 +1,39 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Woubou
 
-# Run and deploy your AI Studio app
+Site public de Woubou avec espace privé de suivi du trafic et des demandes de contact.
 
-This contains everything you need to run your app locally.
+## Installation
 
-View your app in AI Studio: https://ai.studio/apps/8555168a-6226-43c8-9936-97d711bc93a9
+```bash
+npm install
+```
 
-## Run Locally
+Copier `.env.example` vers `.env` puis renseigner :
 
-**Prerequisites:**  Node.js
+- `ADMIN_DASHBOARD_KEY` : clé secrète utilisée pour ouvrir `/admin` ;
+- `RESEND_API_KEY` : clé API Resend ;
+- `CONTACT_NOTIFICATION_EMAIL` : adresse qui reçoit les nouvelles demandes ;
+- `CONTACT_FROM_EMAIL` : expéditeur utilisant un domaine vérifié dans Resend.
 
+## Développement
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Une seule commande démarre le site et l’API :
+
+```bash
+npm run dev
+```
+
+Le site est disponible sur `http://localhost:3000` et les rapports sur `http://localhost:3000/admin`.
+
+Les commandes `npm run dev:web` et `npm run dev:api` restent disponibles pour lancer les deux services séparément.
+
+## Production
+
+```bash
+npm run build
+npm start
+```
+
+Le serveur Express sert le dossier `dist`, collecte les visites, conserve les demandes dans `data/` et envoie les notifications via Resend.
+
+> Le stockage JSON convient à une instance Node unique. Pour un déploiement multi-instance ou serverless, remplacer `data/` par une base de données persistante.

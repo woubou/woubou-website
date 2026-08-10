@@ -9,6 +9,8 @@ import { Team } from './components/Team';
 import { FAQ } from './components/FAQ';
 import { ContactFooter } from './components/ContactFooter';
 import { ERPTestDriveModal } from './components/ERPTestDriveModal';
+import { AdminReportsPage } from './components/AdminReportsPage';
+import { TrafficTracker } from './components/TrafficTracker';
 
 export const AppContent: React.FC = () => {
   const [theme, setTheme] = useState<ThemeMode>('light');
@@ -34,6 +36,7 @@ export const AppContent: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#faf8ff] text-[#131b2e] dark:bg-[#0f172a] dark:text-[#f8fafc] font-inter transition-colors duration-300 antialiased selection:bg-[#026177] selection:text-white">
+      <TrafficTracker />
       {/* Navigation Header */}
       <Header
         theme={theme}
@@ -78,7 +81,7 @@ export const AppContent: React.FC = () => {
 export const App: React.FC = () => {
   return (
     <LanguageProvider>
-      <AppContent />
+      {window.location.pathname.startsWith('/admin') ? <AdminReportsPage /> : <AppContent />}
     </LanguageProvider>
   );
 };

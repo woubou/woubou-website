@@ -4,6 +4,7 @@ import { QuoteFormData } from "../types";
 import { LegalModal, LegalDocType } from "./LegalModal";
 import { useLanguage } from "../context/LanguageContext";
 import { Logo } from "./Logo";
+import { apiErrorMessage, readApiResponse } from "../utils/api";
 
 export const ContactFooter: React.FC = () => {
   const { t } = useLanguage();
@@ -18,25 +19,45 @@ export const ContactFooter: React.FC = () => {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const [website, setWebsite] = useState("");
   const [legalDoc, setLegalDoc] = useState<LegalDocType>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.email || !formData.name) return;
 
-    setSubmitted(true);
+    setSubmitting(true);
+    setSubmitError("");
+    try {
+      const response = await fetch('/api/contacts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData, website })
+      });
+      const payload = await readApiResponse<{ error?: string }>(response);
+      if (!response.ok) {
+        throw new Error(apiErrorMessage(response, payload, 'La demande n’a pas pu être envoyée.'));
+      }
 
-    confetti({
-      particleCount: 100,
-      spread: 70,
-      origin: { y: 0.6 },
-    });
+      setSubmitted(true);
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+      });
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : 'La demande n’a pas pu être envoyée.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
     <footer
       id="contact"
-      className="relative bg-[#026177] dark:bg-slate-950 text-white pt-20 pb-12 transition-colors"
+      className="relative bg-[#026177] dark:bg-slate-950 text-white pt-20 pb-12 transition-colors "
     >
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         {/* Contact Banner Section */}
@@ -97,6 +118,18 @@ export const ContactFooter: React.FC = () => {
                 onSubmit={handleSubmit}
                 className="space-y-4 font-inter text-sm"
               >
+                <div className="absolute -left-[9999px]" aria-hidden="true">
+                  <label htmlFor="website">Website</label>
+                  <input
+                    id="website"
+                    name="website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={website}
+                    onChange={(event) => setWebsite(event.target.value)}
+                  />
+                </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-mono-caps text-[#3f484c] dark:text-slate-300 mb-1">
@@ -198,10 +231,12 @@ export const ContactFooter: React.FC = () => {
 
                 <button
                   type="submit"
-                  className="w-full py-3.5 rounded-xl bg-[#b52703] text-white font-mono-caps text-xs font-bold tracking-wider uppercase hover:bg-[#fc5935] transition-all shadow-lg active:scale-95 cursor-pointer text-center"
+                  disabled={submitting}
+                  className="w-full py-3.5 rounded-xl bg-[#b52703] text-white font-mono-caps text-xs font-bold tracking-wider uppercase hover:bg-[#fc5935] disabled:opacity-60 disabled:cursor-wait transition-all shadow-lg active:scale-95 cursor-pointer text-center"
                 >
-                  {t.contact.sendRequestBtn}
+                  {submitting ? 'Envoi…' : t.contact.sendRequestBtn}
                 </button>
+                {submitError && <p className="text-sm text-[#b52703] dark:text-[#ffb4a3] text-center">{submitError}</p>}
               </form>
             )}
           </div>
