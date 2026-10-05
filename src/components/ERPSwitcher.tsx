@@ -135,9 +135,9 @@ export const ERPSwitcher: React.FC<ERPSwitcherProps> = ({ onOpenTestDrive, embed
             </ul>
 
             <div className="pt-2 flex flex-wrap gap-4">
-              {/* Direct Link to erp.woubou.com */}
+              {/* Direct Link to portal.woubou.com */}
               <a
-                href="https://erp.woubou.com"
+                href="https://portal.woubou.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-md bg-emerald-600 dark:bg-emerald-600 text-white font-mono-caps text-xs font-semibold tracking-wider uppercase hover:bg-emerald-700 transition-all shadow-md active:scale-95"

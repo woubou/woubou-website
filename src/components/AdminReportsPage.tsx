@@ -233,7 +233,7 @@ export const AdminReportsPage: React.FC = () => {
               <p className="text-sm mt-1 opacity-80">
                 {reports.mailConfig.configured
                   ? `Les nouvelles demandes sont envoyées à ${reports.mailConfig.recipient}.`
-                  : 'Ajoutez RESEND_API_KEY, CONTACT_NOTIFICATION_EMAIL et CONTACT_FROM_EMAIL dans le fichier .env, puis redémarrez le serveur.'}
+                  : 'Ajoutez BLOONIO_MAIL_API_KEY, CONTACT_NOTIFICATION_EMAIL et CONTACT_FROM_EMAIL dans le fichier .env, puis redémarrez le serveur.'}
               </p>
             </div>
           </div>

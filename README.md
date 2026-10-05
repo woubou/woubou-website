@@ -11,9 +11,11 @@ npm install
 Copier `.env.example` vers `.env` puis renseigner :
 
 - `ADMIN_DASHBOARD_KEY` : clé secrète utilisée pour ouvrir `/admin` ;
-- `RESEND_API_KEY` : clé API Resend ;
+- `BLOONIO_MAIL_API_KEY` : clé API Bloonio Mail Relay (`bml_…`) ;
+- `BLOONIO_MAIL_BASE_URL` : URL de l’API Bloonio (par défaut `https://mail-relay-api.bloonio.com`) ;
 - `CONTACT_NOTIFICATION_EMAIL` : adresse qui reçoit les nouvelles demandes ;
-- `CONTACT_FROM_EMAIL` : expéditeur utilisant un domaine vérifié dans Resend.
+- `CONTACT_FROM_EMAIL` : adresse expéditeur configurée et vérifiée dans Bloonio ;
+- `CONTACT_FROM_NAME` : nom affiché comme expéditeur (optionnel).
 
 ## Développement
 
@@ -34,6 +36,6 @@ npm run build
 npm start
 ```
 
-Le serveur Express sert le dossier `dist`, collecte les visites, conserve les demandes dans `data/` et envoie les notifications via Resend.
+Le serveur Express sert le dossier `dist`, collecte les visites, conserve les demandes dans `data/` et envoie les notifications via Bloonio Mail Relay.
 
 > Le stockage JSON convient à une instance Node unique. Pour un déploiement multi-instance ou serverless, remplacer `data/` par une base de données persistante.

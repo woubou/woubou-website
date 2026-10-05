@@ -155,7 +155,7 @@ export const ERPTestDriveModal: React.FC<ERPTestDriveModalProps> = ({
 
           <div className="hidden sm:block pt-4 border-t border-white/10 space-y-2.5">
             <a
-              href="https://erp.woubou.com"
+              href="https://portal.woubou.com"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full py-2.5 rounded-lg bg-emerald-600 text-white font-mono-caps text-xs font-semibold hover:bg-emerald-500 transition-all flex items-center justify-center gap-1.5"
@@ -267,13 +267,13 @@ export const ERPTestDriveModal: React.FC<ERPTestDriveModalProps> = ({
                     {t.sandboxModal.runScan}
                   </button>
                   <a
-                    href="https://erp.woubou.com"
+                    href="https://portal.woubou.com"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-4 py-2.5 rounded-lg bg-emerald-600 text-white font-mono-caps text-xs hover:bg-emerald-500 inline-flex items-center gap-1.5"
                   >
                     <span className="material-symbols-outlined text-sm">open_in_new</span>
-                    erp.woubou.com
+                    portal.woubou.com
                   </a>
                 </div>
               </div>

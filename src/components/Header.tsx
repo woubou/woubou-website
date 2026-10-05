@@ -120,11 +120,11 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* Direct Link to Live Woubou ERP */}
           {/* <a
-            href="https://erp.woubou.com"
+            href="https://portal.woubou.com"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden xl:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-md bg-emerald-600 dark:bg-emerald-700 text-white font-mono-caps text-xs tracking-wider hover:bg-emerald-700 dark:hover:bg-emerald-600 transition-all shadow-sm active:scale-95"
-            title="Open erp.woubou.com in new tab"
+            title="Open portal.woubou.com in new tab"
           >
             <span className="material-symbols-outlined text-[16px]">open_in_new</span>
             {t.nav.liveErpLink}
